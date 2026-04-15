@@ -58,7 +58,7 @@ import {
   Check,
   X,
   Clock,
-  Flame,
+  Sparkles,
   AlertCircle,
   Edit,
   Trash2,
@@ -123,7 +123,7 @@ export default function AdminPage() {
             className="text-2xl font-bold text-primary"
             style={{ fontFamily: 'var(--font-playfair)' }}
           >
-            La Fiamma
+            Nice Pizza
           </span>
           <Badge variant="outline" className="ml-2 bg-primary/10 text-primary border-primary/20">
             Admin
@@ -135,7 +135,7 @@ export default function AdminPage() {
             { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
             { id: 'reservations', icon: Calendar, label: 'Prenotazioni' },
             { id: 'takeaway', icon: ShoppingBag, label: 'Asporto' },
-            { id: 'cards', icon: CreditCard, label: 'Fiamma Cards' },
+            { id: 'cards', icon: CreditCard, label: 'Nice Cards' },
             { id: 'settings', icon: Settings, label: 'Impostazioni' },
           ].map((item) => (
             <button
@@ -182,7 +182,7 @@ export default function AdminPage() {
                 className="text-xl font-bold text-primary"
                 style={{ fontFamily: 'var(--font-playfair)' }}
               >
-                La Fiamma Admin
+                Nice Pizza Admin
               </span>
               <Link href="/">
                 <Button variant="ghost" size="sm">
@@ -389,8 +389,8 @@ export default function AdminPage() {
               </div>
 
               <Card>
-                <CardContent className="p-0">
-                  <Table>
+                <CardContent className="p-0 overflow-x-auto">
+                  <Table className="min-w-[600px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Cliente</TableHead>
@@ -530,7 +530,7 @@ export default function AdminPage() {
           {activeTab === 'cards' && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-foreground">Fiamma Cards</h1>
+                <h1 className="text-2xl font-bold text-foreground">Nice Cards</h1>
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
@@ -540,7 +540,7 @@ export default function AdminPage() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>Crea Nuova Fiamma Card</DialogTitle>
+                      <DialogTitle>Crea Nuova Nice Card</DialogTitle>
                       <DialogDescription>
                         Inserisci i dati del cliente per creare una nuova carta fedeltà
                       </DialogDescription>
@@ -567,8 +567,8 @@ export default function AdminPage() {
               </div>
 
               <Card>
-                <CardContent className="p-0">
-                  <Table>
+                <CardContent className="p-0 overflow-x-auto">
+                  <Table className="min-w-[500px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Carta</TableHead>
@@ -699,8 +699,8 @@ export default function AdminPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Flame className="w-5 h-5 text-primary" />
-                      Fiamma Card - Cashback
+                      <Sparkles className="w-5 h-5 text-primary" />
+                      Nice Card - Cashback
                     </CardTitle>
                     <CardDescription>
                       Impostazioni del programma fedeltà
@@ -713,7 +713,7 @@ export default function AdminPage() {
                         <span className="font-semibold text-foreground">Cashback Attivo: 10%</span>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        I clienti ricevono il 10% del totale speso come credito sulla loro Fiamma Card.
+                        I clienti ricevono il 10% del totale speso come credito sulla loro Nice Card.
                         Il credito può essere utilizzato per pagare i prossimi ordini.
                       </p>
                     </div>

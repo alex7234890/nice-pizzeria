@@ -1,13 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { Flame, Award, Clock, Users } from 'lucide-react'
+import { Leaf, Award, Beer, Utensils } from 'lucide-react'
 
 const stats = [
-  { icon: Flame, value: '40+', label: 'Anni di Esperienza' },
-  { icon: Award, value: '100%', label: 'Ingredienti Freschi' },
-  { icon: Clock, value: '90s', label: 'Cottura nel Forno' },
-  { icon: Users, value: '50k+', label: 'Clienti Felici' },
+  { icon: Leaf, value: '100%', label: 'Farine Bio' },
+  { icon: Award, value: 'Top', label: 'Ingredienti Selezionati' },
+  { icon: Beer, value: '10+', label: 'Birre Artigianali' },
+  { icon: Utensils, value: 'Alta', label: 'Digeribilità' },
 ]
 
 export function AboutSection() {
@@ -22,7 +22,7 @@ export function AboutSection() {
                 <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg">
                   <Image
                     src="/images/restaurant-interior.jpg"
-                    alt="Interno del ristorante"
+                    alt="Interno Nice Pizza San Miniato"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-700"
                   />
@@ -30,7 +30,7 @@ export function AboutSection() {
                 <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg">
                   <Image
                     src="/images/pizza-making.jpg"
-                    alt="Preparazione della pizza"
+                    alt="Preparazione pizza in teglia"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-700"
                   />
@@ -40,7 +40,7 @@ export function AboutSection() {
                 <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
                   <Image
                     src="/images/hero-pizza.jpg"
-                    alt="Pizza napoletana"
+                    alt="Pizza in teglia Nice Pizza"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-700"
                   />
@@ -50,8 +50,8 @@ export function AboutSection() {
 
             {/* Floating Badge */}
             <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground rounded-2xl p-6 shadow-xl">
-              <p className="text-4xl font-bold" style={{ fontFamily: 'var(--font-playfair)' }}>1985</p>
-              <p className="text-sm opacity-90">Anno di Fondazione</p>
+              <p className="text-4xl font-bold" style={{ fontFamily: 'var(--font-playfair)' }}>Bio</p>
+              <p className="text-sm opacity-90">Per Passione</p>
             </div>
           </div>
 
@@ -64,17 +64,18 @@ export function AboutSection() {
               className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6 text-balance"
               style={{ fontFamily: 'var(--font-playfair)' }}
             >
-              Passione per la Pizza Napoletana Autentica
+              Bio per Passione, Genuino per Missione
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-              Da oltre quarant&apos;anni, La Fiamma porta sulle tavole dei nostri clienti 
-              l&apos;autentico sapore della tradizione napoletana. Ogni pizza è un&apos;opera 
-              d&apos;arte, preparata con amore e cotta nel nostro forno a legna.
+              Nice Pizza nasce a San Miniato con una missione chiara: portare una pizza
+              in teglia contemporanea, croccante e altamente digeribile, realizzata con
+              farine biologiche e ingredienti accuratamente selezionati.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              Utilizziamo solo ingredienti di prima qualità: farina tipo 00, pomodori 
-              San Marzano DOP, mozzarella di bufala campana e basilico fresco. La nostra 
-              passione per la pizza si tramanda di generazione in generazione.
+              Oltre alla pizza in teglia, proponiamo arancini gourmet, fritti selezionati,
+              birre artigianali, cocktail in bottiglia e bevande italiane di qualità.
+              Un locale dove gusto, genuinità e convivialità si incontrano nel cuore
+              della Toscana.
             </p>
 
             {/* Stats Grid */}

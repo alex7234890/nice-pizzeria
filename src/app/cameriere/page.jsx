@@ -14,12 +14,6 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs'
-import {
   Plus,
   Minus,
   Send,
@@ -30,7 +24,6 @@ import {
   Search,
   ShoppingBag,
   CheckCircle2,
-  Clock,
   Trash2,
 } from 'lucide-react'
 
@@ -64,8 +57,8 @@ const menuItems = {
   bevande: [
     { id: 16, name: 'Coca Cola 33cl', price: 2.50 },
     { id: 17, name: 'Acqua 50cl', price: 1.50 },
-    { id: 18, name: 'Birra Moretti 33cl', price: 3.50 },
-    { id: 19, name: 'Birra Peroni 33cl', price: 3.50 },
+    { id: 18, name: 'Birra Artigianale 33cl', price: 4.00 },
+    { id: 19, name: 'Birra Moretti 33cl', price: 3.50 },
     { id: 20, name: 'Vino Rosso (calice)', price: 4.00 },
     { id: 21, name: 'Vino Bianco (calice)', price: 4.00 },
     { id: 22, name: 'Caffè', price: 1.50 },
@@ -102,11 +95,12 @@ export default function CamerierePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isOrderSent, setIsOrderSent] = useState(false)
   const [notes, setNotes] = useState('')
+  const [sheetView, setSheetView] = useState('menu') // 'menu' | 'order'
 
   const allMenuItems = Object.values(menuItems).flat()
-  
+
   const filteredItems = searchQuery
-    ? allMenuItems.filter(item => 
+    ? allMenuItems.filter(item =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : menuItems[activeCategory]
@@ -149,6 +143,7 @@ export default function CamerierePage() {
       setCurrentOrder([])
       setSelectedTable(null)
       setNotes('')
+      setSheetView('menu')
     }, 2000)
   }
 
@@ -156,28 +151,28 @@ export default function CamerierePage() {
     <div className="min-h-screen bg-secondary">
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
               <span
-                className="text-2xl font-bold text-primary"
+                className="text-xl md:text-2xl font-bold text-primary"
                 style={{ fontFamily: 'var(--font-playfair)' }}
               >
-                La Fiamma
+                Nice Pizza
               </span>
-              <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
+              <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200 text-xs">
                 Cameriere
               </Badge>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 md:gap-4">
+              <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
                 <User className="w-4 h-4" />
                 <span>Marco</span>
               </div>
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-muted-foreground">
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Esci
+                <Button variant="ghost" size="sm" className="text-muted-foreground px-2 md:px-3">
+                  <LogOut className="w-4 h-4 md:mr-2" />
+                  <span className="hidden md:inline">Esci</span>
                 </Button>
               </Link>
             </div>
@@ -185,23 +180,23 @@ export default function CamerierePage() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-4 md:py-6">
         {/* Table Selection */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+          <h2 className="text-base md:text-lg font-semibold text-foreground mb-3 md:mb-4 flex items-center gap-2">
             <Users className="w-5 h-5 text-primary" />
             Seleziona Tavolo
           </h2>
-          <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-2 md:gap-3">
             {mockTables.map((table) => (
-              <Sheet key={table.id}>
+              <Sheet key={table.id} onOpenChange={(open) => { if (!open) { setSheetView('menu') } }}>
                 <SheetTrigger asChild>
                   <button
                     onClick={() => {
                       setSelectedTable(table)
                       setCurrentOrder([])
                     }}
-                    className={`p-4 rounded-xl border-2 transition-all hover:shadow-md ${
+                    className={`p-3 md:p-4 rounded-xl border-2 transition-all hover:shadow-md ${
                       statusColors[table.status]
                     } ${
                       table.status === 'free'
@@ -219,7 +214,7 @@ export default function CamerierePage() {
                   </button>
                 </SheetTrigger>
 
-                <SheetContent side="right" className="w-full sm:max-w-2xl p-0">
+                <SheetContent side="right" className="w-full sm:max-w-2xl p-0 flex flex-col">
                   {isOrderSent ? (
                     <div className="h-full flex flex-col items-center justify-center text-center p-6">
                       <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
@@ -234,19 +229,51 @@ export default function CamerierePage() {
                     </div>
                   ) : (
                     <>
-                      <SheetHeader className="p-6 border-b border-border">
+                      <SheetHeader className="p-4 md:p-6 border-b border-border shrink-0">
                         <SheetTitle className="flex items-center gap-2">
                           <UtensilsCrossed className="w-5 h-5 text-primary" />
-                          Nuovo Ordine - {table.name}
+                          Nuovo Ordine — {table.name}
                         </SheetTitle>
                         <SheetDescription>
-                          {table.guests} ospiti | Aggiungi articoli al conto
+                          {table.guests > 0 ? `${table.guests} ospiti` : 'Tavolo libero'} · Aggiungi articoli al conto
                         </SheetDescription>
                       </SheetHeader>
 
-                      <div className="flex h-[calc(100vh-200px)]">
+                      {/* Mobile Tab Toggle */}
+                      <div className="flex sm:hidden border-b border-border shrink-0">
+                        <button
+                          onClick={() => setSheetView('menu')}
+                          className={`flex-1 py-3 text-sm font-medium transition-colors ${
+                            sheetView === 'menu'
+                              ? 'text-primary border-b-2 border-primary'
+                              : 'text-muted-foreground'
+                          }`}
+                        >
+                          Menu
+                        </button>
+                        <button
+                          onClick={() => setSheetView('order')}
+                          className={`flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
+                            sheetView === 'order'
+                              ? 'text-primary border-b-2 border-primary'
+                              : 'text-muted-foreground'
+                          }`}
+                        >
+                          <ShoppingBag className="w-4 h-4" />
+                          Ordine
+                          {currentOrder.length > 0 && (
+                            <span className="bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                              {currentOrder.length}
+                            </span>
+                          )}
+                        </button>
+                      </div>
+
+                      <div className="flex flex-1 overflow-hidden">
                         {/* Menu Section */}
-                        <div className="flex-1 p-4 overflow-auto border-r border-border">
+                        <div className={`flex-1 overflow-auto border-r border-border p-4 ${
+                          sheetView === 'order' ? 'hidden sm:block' : 'block'
+                        }`}>
                           {/* Search */}
                           <div className="relative mb-4">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -265,7 +292,7 @@ export default function CamerierePage() {
                                 <button
                                   key={cat.id}
                                   onClick={() => setActiveCategory(cat.id)}
-                                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+                                  className={`px-3 md:px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
                                     activeCategory === cat.id
                                       ? 'bg-primary text-primary-foreground'
                                       : 'bg-card text-muted-foreground hover:bg-muted'
@@ -278,17 +305,20 @@ export default function CamerierePage() {
                           )}
 
                           {/* Menu Items */}
-                          <div className="grid grid-cols-2 gap-2">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             {filteredItems.map((item) => (
                               <button
                                 key={item.id}
-                                onClick={() => addToOrder(item)}
-                                className="bg-card rounded-xl p-4 text-left hover:shadow-md transition-shadow border border-border"
+                                onClick={() => {
+                                  addToOrder(item)
+                                  // On mobile, briefly flash to show item added
+                                }}
+                                className="bg-card rounded-xl p-3 md:p-4 text-left hover:shadow-md transition-shadow border border-border active:scale-95"
                               >
                                 <p className="font-medium text-foreground text-sm">
                                   {item.name}
                                 </p>
-                                <p className="text-primary font-bold">
+                                <p className="text-primary font-bold text-sm">
                                   €{item.price.toFixed(2)}
                                 </p>
                               </button>
@@ -297,8 +327,10 @@ export default function CamerierePage() {
                         </div>
 
                         {/* Current Order Section */}
-                        <div className="w-80 bg-muted/50 flex flex-col">
-                          <div className="p-4 border-b border-border">
+                        <div className={`w-full sm:w-72 md:w-80 bg-muted/50 flex flex-col ${
+                          sheetView === 'menu' ? 'hidden sm:flex' : 'flex'
+                        }`}>
+                          <div className="p-4 border-b border-border shrink-0">
                             <h3 className="font-semibold flex items-center gap-2">
                               <ShoppingBag className="w-4 h-4 text-primary" />
                               Ordine Corrente
@@ -318,15 +350,15 @@ export default function CamerierePage() {
                                 {currentOrder.map((item) => (
                                   <div
                                     key={item.id}
-                                    className="bg-card rounded-lg p-3 flex items-center gap-3"
+                                    className="bg-card rounded-lg p-3 flex items-center gap-2"
                                   >
-                                    <div className="flex-1">
-                                      <p className="font-medium text-sm">{item.name}</p>
+                                    <div className="flex-1 min-w-0">
+                                      <p className="font-medium text-sm truncate">{item.name}</p>
                                       <p className="text-xs text-muted-foreground">
                                         €{item.price.toFixed(2)} cad.
                                       </p>
                                     </div>
-                                    <div className="flex items-center gap-1">
+                                    <div className="flex items-center gap-1 shrink-0">
                                       <button
                                         onClick={() => updateQuantity(item.id, -1)}
                                         className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center"
@@ -358,7 +390,7 @@ export default function CamerierePage() {
                               </div>
 
                               {/* Order Total & Send */}
-                              <div className="p-4 border-t border-border bg-card">
+                              <div className="p-4 border-t border-border bg-card shrink-0">
                                 <div className="flex justify-between mb-4">
                                   <span className="font-semibold">Totale</span>
                                   <span className="text-xl font-bold text-primary">
@@ -367,7 +399,7 @@ export default function CamerierePage() {
                                 </div>
                                 <Button
                                   onClick={sendOrder}
-                                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6"
+                                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-5 md:py-6"
                                 >
                                   <Send className="w-5 h-5 mr-2" />
                                   Invia in Cucina
@@ -386,22 +418,22 @@ export default function CamerierePage() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-card rounded-xl p-6 border border-border">
-            <p className="text-sm text-muted-foreground mb-1">Tavoli Attivi</p>
-            <p className="text-3xl font-bold text-foreground">
+        <div className="grid grid-cols-3 gap-3 md:gap-4">
+          <div className="bg-card rounded-xl p-4 md:p-6 border border-border">
+            <p className="text-xs md:text-sm text-muted-foreground mb-1">Tavoli Attivi</p>
+            <p className="text-2xl md:text-3xl font-bold text-foreground">
               {mockTables.filter((t) => t.status !== 'free').length}
             </p>
           </div>
-          <div className="bg-card rounded-xl p-6 border border-border">
-            <p className="text-sm text-muted-foreground mb-1">Ospiti Totali</p>
-            <p className="text-3xl font-bold text-foreground">
+          <div className="bg-card rounded-xl p-4 md:p-6 border border-border">
+            <p className="text-xs md:text-sm text-muted-foreground mb-1">Ospiti Totali</p>
+            <p className="text-2xl md:text-3xl font-bold text-foreground">
               {mockTables.reduce((sum, t) => sum + t.guests, 0)}
             </p>
           </div>
-          <div className="bg-card rounded-xl p-6 border border-border">
-            <p className="text-sm text-muted-foreground mb-1">Tavoli Liberi</p>
-            <p className="text-3xl font-bold text-green-600">
+          <div className="bg-card rounded-xl p-4 md:p-6 border border-border">
+            <p className="text-xs md:text-sm text-muted-foreground mb-1">Tavoli Liberi</p>
+            <p className="text-2xl md:text-3xl font-bold text-green-600">
               {mockTables.filter((t) => t.status === 'free').length}
             </p>
           </div>

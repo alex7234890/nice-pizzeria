@@ -15,8 +15,8 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: 'La Fiamma | Pizzeria Napoletana',
-  description: 'Autentica pizza napoletana con sistema cashback esclusivo. Prenota il tuo tavolo o ordina da asporto.',
+  title: 'Nice Pizza | San Miniato',
+  description: 'Pizza in teglia artigianale a San Miniato. Ingredienti bio, birre artigianali e cocktail. Prenota il tuo tavolo o ordina da asporto.',
 }
 
 export default function RootLayout({ children }) {

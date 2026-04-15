@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Phone, MapPin } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -21,7 +21,7 @@ export function Navbar() {
   const navLinks = [
     { href: '#chi-siamo', label: 'Chi Siamo' },
     { href: '#menu', label: 'Menu' },
-    { href: '#cashback', label: 'Cashback Card' },
+    { href: '#cashback', label: 'Nice Card' },
     { href: '#contatti', label: 'Contatti' },
   ]
 
@@ -29,7 +29,7 @@ export function Navbar() {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? 'bg-card/95 backdrop-blur-md shadow-lg py-3'
           : 'bg-transparent py-5'
       )}
@@ -41,11 +41,11 @@ export function Navbar() {
             <span
               className={cn(
                 'text-2xl md:text-3xl font-bold tracking-tight transition-colors duration-300',
-                isScrolled ? 'text-primary' : 'text-white'
+                isScrolled || isMobileMenuOpen ? 'text-primary' : 'text-white'
               )}
               style={{ fontFamily: 'var(--font-playfair)' }}
             >
-              La Fiamma
+              Nice Pizza
             </span>
           </Link>
 
@@ -87,8 +87,9 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={cn(
               'lg:hidden p-2 rounded-lg transition-colors',
-              isScrolled ? 'text-foreground' : 'text-white'
+              isScrolled || isMobileMenuOpen ? 'text-foreground' : 'text-white'
             )}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -103,10 +104,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn(
-                    'text-sm font-medium transition-colors hover:text-primary',
-                    isScrolled ? 'text-foreground' : 'text-white/90'
-                  )}
+                  className="text-sm font-medium transition-colors hover:text-primary text-foreground"
                 >
                   {link.label}
                 </a>

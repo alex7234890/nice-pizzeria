@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /c/Users/aless/Documents/nice-pizzeria/components/*.jsx)",
+      "Bash(wc *)",
+      "Bash(ls /c/Users/aless/Documents/nice-pizzeria/components/ui/*.tsx)",
+      "Bash(grep -r \"from '@/components/ui/\" /c/Users/aless/Documents/nice-pizzeria/src /c/Users/aless/Documents/nice-pizzeria/components/*.jsx --include=\"*.jsx\" --include=\"*.tsx\")",
+      "WebSearch",
+      "Bash(pnpm build *)",
+      "Bash(npm run *)",
+      "Bash(npm install *)"
+    ]
+  }
+}

@@ -83,8 +83,8 @@ export function MenuPreview() {
             Il Menu
           </h2>
           <p className="text-muted-foreground text-lg">
-            Scopri le nostre pizze artigianali, preparate con ingredienti selezionati
-            e cotte nel forno a legna a 450°C.
+            Scopri le nostre pizze in teglia artigianali, preparate con farine bio
+            e impasto altamente digeribile.
           </p>
         </div>
 

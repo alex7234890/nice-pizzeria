@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { ChevronDown, Flame } from 'lucide-react'
+import { ChevronDown, Sparkles } from 'lucide-react'
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -19,7 +19,7 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src="/images/hero-pizza.jpg"
-          alt="Pizza napoletana dal forno a legna"
+          alt="Pizza in teglia artigianale Nice Pizza San Miniato"
           fill
           className="object-cover"
           priority
@@ -43,9 +43,9 @@ export function HeroSection() {
       >
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
-          <Flame className="w-4 h-4 text-primary" />
+          <Sparkles className="w-4 h-4 text-primary" />
           <span className="text-white/90 text-sm font-medium">
-            Autentica Pizza Napoletana
+            Pizza in Teglia · Ingredienti Bio · San Miniato
           </span>
         </div>
 
@@ -54,18 +54,19 @@ export function HeroSection() {
           className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight text-balance"
           style={{ fontFamily: 'var(--font-playfair)' }}
         >
-          La Fiamma
+          Nice Pizza
         </h1>
 
         {/* Tagline */}
         <p className="text-xl md:text-2xl text-white/80 mb-4 font-light tracking-wide">
-          Tradizione e Passione dal 1985
+          Drink n&apos; Slice · San Miniato
         </p>
 
         {/* Description */}
         <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Scopri il sapore autentico della pizza napoletana cotta nel forno a legna.
-          Ogni ordine ti regala il 10% di cashback sulla tua carta fedeltà.
+          Pizza in teglia croccante con farine bio e impasto altamente digeribile.
+          Birre artigianali, cocktail e ingredienti selezionati.
+          Ogni ordine ti regala il 10% di cashback sulla tua Nice Card.
         </p>
 
         {/* CTA Buttons */}
@@ -93,7 +94,7 @@ export function HeroSection() {
         <div className="mt-12 inline-flex items-center gap-3 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-6 py-3">
           <span className="text-primary font-bold text-2xl">10%</span>
           <span className="text-white/90 text-sm">
-            Cashback su ogni ordine con la tua Fiamma Card
+            Cashback su ogni ordine con la tua Nice Card
           </span>
         </div>
       </div>

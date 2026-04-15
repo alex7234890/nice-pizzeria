@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, Phone, Clock, Mail, Instagram, Facebook } from 'lucide-react'
+import { MapPin, Phone, Clock, Globe, Instagram, Facebook } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -8,26 +8,20 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Indirizzo',
-    content: 'Via Roma 123, 80100 Napoli (NA)',
-    link: 'https://maps.google.com',
+    content: 'Via Leonardo Da Vinci, 4b — San Miniato (PI)',
+    link: 'https://maps.app.goo.gl/nicepizzasanminiato',
   },
   {
-    icon: Phone,
-    title: 'Telefono',
-    content: '+39 081 123 4567',
-    link: 'tel:+390811234567',
-  },
-  {
-    icon: Mail,
-    title: 'Email',
-    content: 'info@lafiamma.it',
-    link: 'mailto:info@lafiamma.it',
+    icon: Globe,
+    title: 'Sito Web',
+    content: 'nice.pizza',
+    link: 'https://www.nice.pizza',
   },
   {
     icon: Clock,
     title: 'Orari',
-    content: 'Mar-Dom: 12:00-15:00 / 19:00-23:00',
-    note: 'Lunedì chiuso',
+    content: 'Mer–Dom: 12:00–14:30 / 18:30–22:30',
+    note: 'Lunedì e Martedì chiusi',
   },
 ]
 
@@ -48,8 +42,8 @@ export function ContactSection() {
               Contatti
             </h2>
             <p className="text-muted-foreground text-lg mb-10">
-              Siamo nel cuore di Napoli, pronti ad accoglierti con il calore 
-              della tradizione italiana. Prenota il tuo tavolo o passa a trovarci!
+              Siamo a San Miniato, nel cuore della Toscana. Vieni a scoprire la nostra
+              pizza in teglia, birre artigianali e cocktail!
             </p>
 
             <div className="space-y-6">
@@ -85,18 +79,20 @@ export function ContactSection() {
               <p className="font-semibold text-foreground mb-4">Seguici sui Social</p>
               <div className="flex gap-3">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/nice.drinknslice"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  aria-label="Instagram Nice Pizza"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/nice.drinknslice"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  aria-label="Facebook Nice Pizza"
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
@@ -118,18 +114,18 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Map Placeholder */}
+          {/* Map */}
           <div className="relative">
             <div className="bg-secondary rounded-2xl overflow-hidden h-full min-h-[400px] relative">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095919355!2d-74.00425878428698!3d40.74076794379132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sus!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.5!2d10.85!3d43.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVia+Leonardo+Da+Vinci+4b+San+Miniato!5e0!3m2!1sit!2sit!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: '400px' }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="La Fiamma Location"
+                title="Nice Pizza San Miniato"
               />
             </div>
 
@@ -137,14 +133,14 @@ export function ContactSection() {
             <div className="absolute bottom-4 left-4 right-4 bg-card rounded-xl p-4 shadow-lg border border-border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-bold text-foreground">La Fiamma</p>
-                  <p className="text-sm text-muted-foreground">Via Roma 123, Napoli</p>
+                  <p className="font-bold text-foreground">Nice Pizza</p>
+                  <p className="text-sm text-muted-foreground">Via Leonardo Da Vinci, 4b — San Miniato</p>
                 </div>
                 <a
-                  href="https://maps.google.com"
+                  href="https://maps.google.com/?q=Nice+Pizza+San+Miniato+Via+Leonardo+Da+Vinci+4b"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+                  className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
                 >
                   Indicazioni
                 </a>

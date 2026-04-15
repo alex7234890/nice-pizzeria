@@ -29,7 +29,7 @@ import {
   Mail,
   ArrowLeft,
   CheckCircle2,
-  Flame,
+  Sparkles,
 } from 'lucide-react'
 
 const timeSlots = [
@@ -102,7 +102,7 @@ export default function PrenotaPage() {
                 className="text-2xl font-bold text-primary"
                 style={{ fontFamily: 'var(--font-playfair)' }}
               >
-                La Fiamma
+                Nice Pizza
               </span>
             </Link>
             <div className="w-24" />
@@ -115,7 +115,7 @@ export default function PrenotaPage() {
           {/* Title */}
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-              <Flame className="w-4 h-4 text-primary" />
+              <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-primary text-sm font-semibold">Prenotazione Tavolo</span>
             </div>
             <h1
@@ -125,7 +125,7 @@ export default function PrenotaPage() {
               Prenota il Tuo Tavolo
             </h1>
             <p className="text-muted-foreground text-lg">
-              Compila il modulo per prenotare la tua esperienza da La Fiamma
+              Compila il modulo per prenotare la tua esperienza da Nice Pizza
             </p>
           </div>
 

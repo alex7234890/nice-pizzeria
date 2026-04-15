@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Flame } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 
 const footerLinks = {
   navigazione: [
@@ -11,7 +11,7 @@ const footerLinks = {
   servizi: [
     { label: 'Prenota Tavolo', href: '/prenota' },
     { label: 'Ordina Asporto', href: '/asporto' },
-    { label: 'Fiamma Card', href: '/#cashback' },
+    { label: 'Nice Card', href: '/#cashback' },
   ],
   legale: [
     { label: 'Privacy Policy', href: '/privacy' },
@@ -32,15 +32,15 @@ export function Footer() {
                 className="text-3xl font-bold text-primary"
                 style={{ fontFamily: 'var(--font-playfair)' }}
               >
-                La Fiamma
+                Nice Pizza
               </span>
             </Link>
             <p className="text-background/60 text-sm leading-relaxed mb-4">
-              Autentica pizza napoletana dal 1985. Tradizione, passione e 
-              ingredienti di prima qualità per un&apos;esperienza culinaria unica.
+              Pizza in teglia artigianale con farine bio a San Miniato (PI).
+              Birre artigianali, cocktail e ingredienti selezionati.
             </p>
             <div className="flex items-center gap-2 text-primary">
-              <Flame className="w-5 h-5" />
+              <Sparkles className="w-5 h-5" />
               <span className="text-sm font-semibold">10% Cashback su ogni ordine</span>
             </div>
           </div>
@@ -101,10 +101,10 @@ export function Footer() {
         <div className="border-t border-background/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-background/40 text-sm">
-              © {new Date().getFullYear()} La Fiamma Pizzeria. Tutti i diritti riservati.
+              © {new Date().getFullYear()} Nice Pizza · San Miniato. Tutti i diritti riservati.
             </p>
             <p className="text-background/40 text-sm">
-              P.IVA: IT12345678901 | Via Roma 123, 80100 Napoli (NA)
+              Via Leonardo Da Vinci, 4b · San Miniato (PI)
             </p>
           </div>
         </div>

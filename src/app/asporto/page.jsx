@@ -29,7 +29,7 @@ import {
   Trash2,
   Clock,
   CheckCircle2,
-  Flame,
+  Sparkles,
   Search,
 } from 'lucide-react'
 
@@ -136,7 +136,7 @@ export default function AsportoPage() {
             <p className="text-2xl font-bold text-foreground">€{cartTotal.toFixed(2)}</p>
             <div className="mt-4 pt-4 border-t border-border">
               <p className="text-sm text-primary font-semibold flex items-center gap-2">
-                <Flame className="w-4 h-4" />
+                <Sparkles className="w-4 h-4" />
                 Cashback guadagnato: €{cashbackAmount.toFixed(2)}
               </p>
             </div>
@@ -169,7 +169,7 @@ export default function AsportoPage() {
                 className="text-2xl font-bold text-primary"
                 style={{ fontFamily: 'var(--font-playfair)' }}
               >
-                La Fiamma
+                Nice Pizza
               </span>
             </Link>
 
@@ -279,7 +279,7 @@ export default function AsportoPage() {
                           </div>
                           <div className="flex justify-between text-sm text-primary">
                             <span className="flex items-center gap-1">
-                              <Flame className="w-4 h-4" />
+                              <Sparkles className="w-4 h-4" />
                               Cashback (10%)
                             </span>
                             <span className="font-medium">+€{cashbackAmount.toFixed(2)}</span>
@@ -311,7 +311,7 @@ export default function AsportoPage() {
         {/* Title */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-            <Flame className="w-4 h-4 text-primary" />
+            <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-semibold">Ordina da Asporto</span>
           </div>
           <h1
@@ -489,7 +489,7 @@ export default function AsportoPage() {
                   <div className="bg-secondary rounded-xl p-4 space-y-2">
                     <div className="flex justify-between text-sm text-primary">
                       <span className="flex items-center gap-1">
-                        <Flame className="w-4 h-4" />
+                        <Sparkles className="w-4 h-4" />
                         Cashback
                       </span>
                       <span className="font-medium">+€{cashbackAmount.toFixed(2)}</span>

@@ -30,10 +30,9 @@ import {
   CheckCircle2,
   Clock,
   Euro,
-  Flame,
+  Sparkles,
   LogOut,
   User,
-  Hash,
   Wallet,
 } from 'lucide-react'
 
@@ -61,7 +60,7 @@ const mockTableDetails = {
     items: [
       { name: 'Margherita', quantity: 2, price: 8.50 },
       { name: 'Diavola', quantity: 1, price: 10.00 },
-      { name: 'Birra Moretti 33cl', quantity: 3, price: 3.50 },
+      { name: 'Birra Artigianale 33cl', quantity: 3, price: 4.00 },
     ],
   },
 }
@@ -87,7 +86,6 @@ export default function CassieraPage() {
   const [isPaymentComplete, setIsPaymentComplete] = useState(false)
 
   const handleSearchCard = () => {
-    // Simulate card lookup
     if (cardNumber.length >= 4) {
       setCardBalance({
         number: cardNumber,
@@ -117,28 +115,28 @@ export default function CassieraPage() {
     <div className="min-h-screen bg-secondary">
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
               <span
-                className="text-2xl font-bold text-primary"
+                className="text-xl md:text-2xl font-bold text-primary"
                 style={{ fontFamily: 'var(--font-playfair)' }}
               >
-                La Fiamma
+                Nice Pizza
               </span>
-              <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+              <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-xs">
                 Cassa
               </Badge>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 md:gap-4">
+              <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
                 <User className="w-4 h-4" />
                 <span>Giulia</span>
               </div>
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-muted-foreground">
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Esci
+                <Button variant="ghost" size="sm" className="text-muted-foreground px-2 md:px-3">
+                  <LogOut className="w-4 h-4 md:mr-2" />
+                  <span className="hidden md:inline">Esci</span>
                 </Button>
               </Link>
             </div>
@@ -146,8 +144,8 @@ export default function CassieraPage() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+      <main className="container mx-auto px-4 py-4 md:py-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 md:space-y-6">
           <TabsList className="grid w-full max-w-md grid-cols-2 mx-auto">
             <TabsTrigger value="tables" className="flex items-center gap-2">
               <Users className="w-4 h-4" />
@@ -160,40 +158,40 @@ export default function CassieraPage() {
           </TabsList>
 
           {/* Tables Tab */}
-          <TabsContent value="tables" className="space-y-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <TabsContent value="tables" className="space-y-4 md:space-y-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {mockTables.map((table) => (
                 <Dialog key={table.id}>
                   <DialogTrigger asChild>
                     <button
                       onClick={() => setSelectedTable(table)}
                       disabled={table.status === 'free'}
-                      className={`p-6 rounded-2xl border-2 text-left transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${
+                      className={`p-4 md:p-6 rounded-2xl border-2 text-left transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${
                         statusColors[table.status]
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-lg font-bold">{table.name}</span>
-                        <Badge variant="secondary" className="text-xs">
+                      <div className="flex items-start justify-between mb-2 md:mb-4 gap-1">
+                        <span className="text-base md:text-lg font-bold">{table.name}</span>
+                        <Badge variant="secondary" className="text-xs shrink-0">
                           {statusLabels[table.status]}
                         </Badge>
                       </div>
                       {table.status !== 'free' && (
                         <>
-                          <p className="text-2xl font-bold mb-1">€{table.total.toFixed(2)}</p>
+                          <p className="text-xl md:text-2xl font-bold mb-1">€{table.total.toFixed(2)}</p>
                           <p className="text-sm opacity-70">{table.items} articoli</p>
                         </>
                       )}
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-lg">
+                  <DialogContent className="w-[95vw] max-w-lg mx-auto">
                     <DialogHeader>
                       <DialogTitle className="flex items-center gap-2">
                         <Receipt className="w-5 h-5 text-primary" />
                         Conto {table.name}
                       </DialogTitle>
                       <DialogDescription>
-                        Gestisci il pagamento e la Fiamma Card
+                        Gestisci il pagamento e la Nice Card
                       </DialogDescription>
                     </DialogHeader>
 
@@ -208,7 +206,7 @@ export default function CassieraPage() {
                         </p>
                       </div>
                     ) : (
-                      <div className="space-y-6">
+                      <div className="space-y-4 max-h-[70vh] overflow-y-auto">
                         {/* Order Items */}
                         <div className="bg-secondary rounded-xl p-4">
                           <h4 className="font-semibold mb-3">Riepilogo Ordine</h4>
@@ -232,11 +230,11 @@ export default function CassieraPage() {
                           </div>
                         </div>
 
-                        {/* Fiamma Card Section */}
+                        {/* Nice Card Section */}
                         <div className="bg-primary/5 rounded-xl p-4 border border-primary/20">
                           <h4 className="font-semibold mb-3 flex items-center gap-2">
                             <CreditCard className="w-4 h-4 text-primary" />
-                            Fiamma Card
+                            Nice Card
                           </h4>
                           <div className="flex gap-2 mb-3">
                             <Input
@@ -269,7 +267,7 @@ export default function CassieraPage() {
 
                               <div className="space-y-2">
                                 <Label className="text-sm">Usa credito (max €{cardBalance.balance.toFixed(2)})</Label>
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 flex-wrap">
                                   <Button
                                     variant="outline"
                                     size="sm"
@@ -288,7 +286,7 @@ export default function CassieraPage() {
                                         )
                                       )
                                     }
-                                    className="text-center w-24"
+                                    className="text-center w-20"
                                   />
                                   <Button
                                     variant="outline"
@@ -320,12 +318,12 @@ export default function CassieraPage() {
                               <span>-€{useBalance.toFixed(2)}</span>
                             </div>
                           )}
-                          <div className="flex justify-between text-2xl font-bold mb-3">
+                          <div className="flex justify-between text-xl md:text-2xl font-bold mb-3">
                             <span>Totale da Pagare</span>
                             <span>€{finalTotal.toFixed(2)}</span>
                           </div>
                           <div className="flex items-center gap-2 text-primary text-sm">
-                            <Flame className="w-4 h-4" />
+                            <Sparkles className="w-4 h-4" />
                             <span>Cashback che verrà caricato: €{cashback.toFixed(2)}</span>
                           </div>
                         </div>
@@ -335,14 +333,14 @@ export default function CassieraPage() {
                           <Button
                             variant="outline"
                             onClick={handlePayment}
-                            className="py-6"
+                            className="py-5 md:py-6"
                           >
                             <Euro className="w-5 h-5 mr-2" />
                             Contanti
                           </Button>
                           <Button
                             onClick={handlePayment}
-                            className="py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
+                            className="py-5 md:py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
                           >
                             <CreditCard className="w-5 h-5 mr-2" />
                             Carta
@@ -362,91 +360,93 @@ export default function CassieraPage() {
               {mockTakeawayOrders.map((order) => (
                 <div
                   key={order.id}
-                  className="bg-card rounded-xl p-5 border border-border flex items-center justify-between"
+                  className="bg-card rounded-xl p-4 md:p-5 border border-border"
                 >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                        order.status === 'ready'
-                          ? 'bg-green-100 text-green-600'
-                          : 'bg-amber-100 text-amber-600'
-                      }`}
-                    >
-                      {order.status === 'ready' ? (
-                        <CheckCircle2 className="w-6 h-6" />
-                      ) : (
-                        <Clock className="w-6 h-6" />
-                      )}
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-foreground">#{order.id}</span>
-                        <Badge
-                          variant="secondary"
-                          className={
-                            order.status === 'ready'
-                              ? 'bg-green-100 text-green-700'
-                              : 'bg-amber-100 text-amber-700'
-                          }
-                        >
-                          {order.status === 'ready' ? 'Pronto' : 'In preparazione'}
-                        </Badge>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:justify-between">
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${
+                          order.status === 'ready'
+                            ? 'bg-green-100 text-green-600'
+                            : 'bg-amber-100 text-amber-600'
+                        }`}
+                      >
+                        {order.status === 'ready' ? (
+                          <CheckCircle2 className="w-6 h-6" />
+                        ) : (
+                          <Clock className="w-6 h-6" />
+                        )}
                       </div>
-                      <p className="text-muted-foreground">{order.customer}</p>
-                      <p className="text-sm text-muted-foreground">
-                        Ritiro: {order.time} | Tel: {order.phone}
-                      </p>
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-bold text-foreground">#{order.id}</span>
+                          <Badge
+                            variant="secondary"
+                            className={
+                              order.status === 'ready'
+                                ? 'bg-green-100 text-green-700'
+                                : 'bg-amber-100 text-amber-700'
+                            }
+                          >
+                            {order.status === 'ready' ? 'Pronto' : 'In preparazione'}
+                          </Badge>
+                        </div>
+                        <p className="text-muted-foreground font-medium">{order.customer}</p>
+                        <p className="text-sm text-muted-foreground">
+                          Ritiro: {order.time} · {order.phone}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-2xl font-bold text-primary">€{order.total.toFixed(2)}</p>
-                    {order.status === 'ready' && (
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button size="sm" className="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground">
-                            Paga
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>Pagamento Ordine #{order.id}</DialogTitle>
-                            <DialogDescription>
-                              Cliente: {order.customer}
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="space-y-4">
-                            <div className="bg-secondary rounded-xl p-4">
-                              <div className="flex justify-between text-lg font-bold">
-                                <span>Totale</span>
-                                <span>€{order.total.toFixed(2)}</span>
+                    <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2">
+                      <p className="text-2xl font-bold text-primary">€{order.total.toFixed(2)}</p>
+                      {order.status === 'ready' && (
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                              Paga
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="w-[95vw] max-w-md mx-auto">
+                            <DialogHeader>
+                              <DialogTitle>Pagamento Ordine #{order.id}</DialogTitle>
+                              <DialogDescription>
+                                Cliente: {order.customer}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="space-y-4">
+                              <div className="bg-secondary rounded-xl p-4">
+                                <div className="flex justify-between text-lg font-bold">
+                                  <span>Totale</span>
+                                  <span>€{order.total.toFixed(2)}</span>
+                                </div>
                               </div>
-                            </div>
-                            <div className="bg-primary/5 rounded-xl p-4 border border-primary/20">
-                              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                                <CreditCard className="w-4 h-4 text-primary" />
-                                Fiamma Card
-                              </h4>
-                              <div className="flex gap-2">
-                                <Input placeholder="Numero carta" className="flex-1" />
-                                <Button variant="outline">
-                                  <Search className="w-4 h-4" />
+                              <div className="bg-primary/5 rounded-xl p-4 border border-primary/20">
+                                <h4 className="font-semibold mb-3 flex items-center gap-2">
+                                  <CreditCard className="w-4 h-4 text-primary" />
+                                  Nice Card
+                                </h4>
+                                <div className="flex gap-2">
+                                  <Input placeholder="Numero carta" className="flex-1" />
+                                  <Button variant="outline">
+                                    <Search className="w-4 h-4" />
+                                  </Button>
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-2 gap-3">
+                                <Button variant="outline" className="py-5 md:py-6">
+                                  <Euro className="w-5 h-5 mr-2" />
+                                  Contanti
+                                </Button>
+                                <Button className="py-5 md:py-6 bg-primary hover:bg-primary/90 text-primary-foreground">
+                                  <CreditCard className="w-5 h-5 mr-2" />
+                                  Carta
                                 </Button>
                               </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-3">
-                              <Button variant="outline" className="py-6">
-                                <Euro className="w-5 h-5 mr-2" />
-                                Contanti
-                              </Button>
-                              <Button className="py-6 bg-primary hover:bg-primary/90 text-primary-foreground">
-                                <CreditCard className="w-5 h-5 mr-2" />
-                                Carta
-                              </Button>
-                            </div>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    )}
+                          </DialogContent>
+                        </Dialog>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
